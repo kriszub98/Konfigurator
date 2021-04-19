@@ -1,18 +1,13 @@
-.navka
-{
-color:black;
-font-size:17px;
-font-weight:400;
+body {
+	background-image: url("../img/bavk.jpeg");
 }
 
-.navbot
-{
-width:50%;
-margin-left:25%;
-border-radius: 0px 0px 25px 25px;
+.nav-border-bottom {
+	border-radius: 0px 0px 25px 25px;
 }
 
-body
-{
-    background-image: url("../img/bavk.jpeg");
+.navka {
+	color: black;
+	font-size: 16px;
+	font-weight: 400;
 }
