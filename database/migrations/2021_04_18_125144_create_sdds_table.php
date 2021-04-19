@@ -18,9 +18,9 @@ class CreateSddsTable extends Migration
             $table->string('name');
             $table->string('manufacturer');
             $table->string('type');
+            $table->string('interface');
             $table->unsignedInteger('storage_memory');
             $table->unsignedInteger('write_speed');
-            $table->unsignedInteger('read_speed');
             $table->unsignedInteger('read_speed');
             $table->string('nand_flash_type');
             $table->unsignedFloat('price');

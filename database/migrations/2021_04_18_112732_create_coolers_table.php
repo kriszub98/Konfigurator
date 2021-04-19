@@ -26,7 +26,7 @@ class CreateCoolersTable extends Migration
             $table->unsignedSmallInteger('number_fan');
             $table->unsignedInteger('fan_diameter');
             $table->unsignedInteger('fan_speed');
-            $table->unsignedFloat('cfm');                           //TODO: MACIEK REVIEW
+            $table->unsignedFloat('cfm');
             $table->unsignedFloat('noises');
             $table->boolean('is_produced');
             $table->timestamps();

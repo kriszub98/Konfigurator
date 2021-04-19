@@ -16,17 +16,22 @@ class CreateMotherboardsTable extends Migration
         Schema::create('motherboards', function (Blueprint $table) {
             $table->id();
             $table->string('manufacturer');
-            $table->string('form_factor');              //TODO: Check that
+            $table->string('form_factor');
             $table->string('name');
-            $table->string('compatible_cpu_brand');     //TODO: CHECK
-            $table->string('socket_type');              //TODO: CHECK / change to manytomany
-            $table->string('memory_type');              //TODO: Check that
+            $table->string('compatible_cpu_brand');
+            $table->string('socket_type');
+            $table->string('memory_type');
             $table->unsignedInteger('max_slot_memory');
             $table->unsignedInteger('max_memory_amount');
-            $table->unsignedInteger('memory_frequency');    // CHECK IF MANYTOMANY
+            $table->unsignedInteger('memory_frequency');    // TODO: MANYTOMANY
             $table->string('memory_architecture');
-            $table->string('expansion_slots');        //Many to many??
-            //TODO: FINISH BUT AFTER ASKING
+            $table->string('expansion_slots');          // TODO: gniazda rozszerzeń, wiele do wielu z ilością?
+            $table->string('storage_interfaces');       // TODO: złącza napędów, wiele do wielu z ilością?
+            $table->string('internal_connector');       // just view
+            $table->string('rear_panel');               // just view
+            $table->unsignedInteger('tdp');
+            $table->unsignedFloat('price');
+            $table->boolean('is_produced');
             $table->timestamps();
         });
     }

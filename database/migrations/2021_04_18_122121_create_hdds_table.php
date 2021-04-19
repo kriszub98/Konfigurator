@@ -16,7 +16,7 @@ class CreateHddsTable extends Migration
         Schema::create('hdds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedFloat('size');
+            $table->unsignedInteger('size');
             $table->unsignedFloat('type');
             $table->unsignedInteger('cache');
             $table->unsignedInteger('speed');
