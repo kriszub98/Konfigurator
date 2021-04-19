@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRamsTable extends Migration
+class CreateGpusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateRamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rams', function (Blueprint $table) {
+        Schema::create('gpus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('manufacturer');
-            $table->string('type');
+            $table->string('chipset_brand');
+            $table->unsignedInteger('memory_size');
             $table->string('memory_type');
-            $table->unsignedSmallInteger('total_capacity');
-            $table->unsignedSmallInteger('number_of_modules');
-            $table->unsignedSmallInteger('tdp');
-            $table->unsignedInteger('working_frequency');
-            $table->boolean('cooling');
-            $table->boolean('led');
+            $table->string('compatible_slot');
+            $table->string('cable_required');
+            $table->unsignedInteger('tdp');
+            $table->string('connectors');
+            $table->unsignedInteger('length');
             $table->unsignedFloat('price');
             $table->boolean('is_produced');
             $table->timestamps();
@@ -38,6 +38,6 @@ class CreateRamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rams');
+        Schema::dropIfExists('gpus');
     }
 }
