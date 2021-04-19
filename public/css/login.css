@@ -1,0 +1,36 @@
+.card-header
+{
+    color: black;
+    text-align: center;
+}
+
+.kart
+{
+   display: block;
+}
+
+#password, #email
+{
+    display: block;
+}
+
+.remch
+{
+    display: block;
+}
+
+.logbut
+{
+    width: 305px;
+    display: block;
+}
+
+.dontremp
+{
+    text-align: center;
+}
+
+
+
+
+

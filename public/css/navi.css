@@ -1,0 +1,18 @@
+.navka
+{
+color:black;
+font-size:17px;
+font-weight:400;
+}
+
+.navbot
+{
+width:50%;
+margin-left:25%;
+border-radius: 0px 0px 25px 25px;
+}
+
+body
+{
+    background-image: url("../img/bavk.jpeg");
+}

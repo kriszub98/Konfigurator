@@ -15,40 +15,29 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navi.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="nav navbar navbar-expand-lg navbar-white bg-white sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <a class="navbar-nav" href="../views/"><img width="120px" height="auto" src="../img/logo.png" alt="#"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#onDisplayResolutionChange" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                    </div>
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <li class="nav">
+                                    <a class="nav-link navka" href="{{ route('login') }}"><i class="fa fa-user navka"></i> {{ __('Zaloguj się') }}</a>
                                 </li>
                             @endif
-                            
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <li class="nav">
+                                    <a class="nav-link navka" href="{{ route('register') }}"><i class="fa fa-user-plus navka"></i>{{ __('Zarejestruj się') }}</a>
                                 </li>
                             @endif
                         @else
@@ -74,10 +63,26 @@
                 </div>
             </div>
         </nav>
-
+        <nav class="nav navbar-expand-sm navbar-white bg-white sticky-top navbot">
+            <div class="container">
+					<ul class="nav" style="padding-left:10%">
+					<li class="col">
+						<a  class="nav-link navka" href="#"><i class="fa fa-heart-o navka"></i>  Moje listy</a>
+					</li>
+					<li class="col">
+						<a  class="nav-link navka" href="#"><i class="fa fa-group navka"></i> Udostępnione</a>
+					</li>
+					<li class="col">
+						<a  class="nav-link navka" href="#"><i class="fa fa-desktop  navka"></i>  Konfigurator</a>
+					</li>
+					</ul>
+            </div>
+            </nav>
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/3810206ae2.js" crossorigin="anonymous"></script>
 </body>
 </html>
