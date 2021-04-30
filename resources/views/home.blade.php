@@ -1,21 +1,18 @@
 @extends('layouts.app')
 
+@section('custom_styles')
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('Zalogowano pomyślnie!') }}
-                </div>
+    <div class="row position-absolute top-50 end-0">
+        <div class="col-md-12">
+            <h1 class="text-white fs-1 d-flex center me-5"> Witamy na naszej stronie </h1>
+            <div class="col d-flex justify-content-center">
+                <button type="submit" class="btn text-white w-50 fs-2 mt-5" style="border: 4px solid white; border-radius: 25px;">
+                    {{ __('Przejdź do konfiguratora') }}
+                </button>
             </div>
         </div>
     </div>
