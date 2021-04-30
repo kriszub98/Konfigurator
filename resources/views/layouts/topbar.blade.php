@@ -43,16 +43,46 @@
     </div>
 </nav>
 
-<nav class="nav navbar-expand-sm d-flex justify-content-center">
-    <ul class="nav d-flex justify-content-around w-50 bg-white nav-border-bottom">
-        <li>
-            <a class="nav-link navka" href="#"><i class="fa fa-heart-o pr-2"></i>Moje listy</a>
-        </li>
-        <li>
-            <a class="nav-link navka" href="#"><i class="fa fa-group pr-2"></i>Udostępnione</a>
-        </li>
-        <li>
-            <a class="nav-link navka" href="#"><i class="fa fa-desktop pr-2"></i>Konfigurator</a>
-        </li>
-    </ul>
-</nav>
+
+@guest
+    <nav class="nav navbar-expand-sm d-flex justify-content-center">
+        <ul class="nav d-flex justify-content-around w-50 bg-white nav-border-bottom">
+            <li>
+                <a class="nav-link navka" href="#"><i class="fa fa-group pr-2"></i>Udostępnione</a>
+            </li>
+            <li>
+                <a class="nav-link navka" href="#"><i class="fa fa-desktop pr-2"></i>Konfigurator</a>
+            </li>
+        </ul>
+    </nav>
+@else
+    @if (Auth::user()->role_id == 1)
+    <nav class="nav navbar-expand-sm d-flex justify-content-center">
+        <ul class="nav d-flex justify-content-around w-50 bg-white nav-border-bottom">
+            <li>
+                <a class="nav-link navka" href="#"><i class="fa fa-heart-o pr-2"></i>Moje listy</a>
+            </li>
+            <li>
+                <a class="nav-link navka" href="#"><i class="fa fa-group pr-2"></i>Udostępnione</a>
+            </li>
+            <li>
+                <a class="nav-link navka" href="#"><i class="fa fa-desktop pr-2"></i>Konfigurator</a>
+            </li>
+        </ul>
+    </nav>
+    @elseif (Auth::user()->role_id == 2)
+    <nav class="nav navbar-expand-sm d-flex justify-content-center">
+        <ul class="nav d-flex justify-content-around w-50 bg-white nav-border-bottom">
+            <li>
+                <a class="nav-link navka" href="{{ route('home') }}"><i class="fa fa-database pr-2"></i>Zestawy</a>
+            </li>
+            <li>
+                <a class="nav-link navka" href="{{ route('user.index') }}"><i class="fa fa-group pr-2"></i>Użytkownicy</a>
+            </li>
+            <li>
+                <a class="nav-link navka" href="{{ route('home') }}"><i class="fa fa-wrench pr-2"></i>Produkty</a>
+            </li>
+        </ul>
+    </nav>
+    @endif
+@endguest

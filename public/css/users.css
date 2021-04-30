@@ -1,0 +1,13 @@
+body{
+    background-color: #F1F1F1;
+}
+
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    transition: 0.5s;
+    }
+.custab:hover{
+    transition: 0.5s;
+    }
