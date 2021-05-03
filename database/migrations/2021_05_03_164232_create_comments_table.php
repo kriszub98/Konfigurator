@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRatingsTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateRatingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ratings', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('set_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('computer_set_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('rate');
+            $table->string('content');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateRatingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ratings');
+        Schema::dropIfExists('comments');
     }
 }

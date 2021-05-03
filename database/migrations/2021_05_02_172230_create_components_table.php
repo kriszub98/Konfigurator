@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHddsTable extends Migration
+class CreateComponentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateHddsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hdds', function (Blueprint $table) {
+        Schema::create('components', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('size');
-            $table->unsignedFloat('type');
-            $table->unsignedInteger('cache');
-            $table->unsignedInteger('speed');
-            $table->string('interface');
-            $table->unsignedFloat('price');
+            $table->string('photo_path');
+            $table->unsignedBigInteger('price');
             $table->boolean('is_produced');
+            $table->foreignId('type_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ class CreateHddsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hdds');
+        Schema::dropIfExists('components');
     }
 }
