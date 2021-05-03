@@ -21,6 +21,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::view('/logowanie', 'user.login');        
-Route::view('/rejestracja', 'user.register');    
+// Route::view('/logowanie', 'user.login');        
+// Route::view('/rejestracja', 'user.register');    
 Route::resource('users', App\Http\Controllers\UserController::class);

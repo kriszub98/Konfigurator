@@ -80,7 +80,7 @@
                 <a class="nav-link navka" href="{{ route('user.index') }}"><i class="fa fa-group pr-2"></i>Użytkownicy</a>
             </li>
             <li>
-                <a class="nav-link navka" href="{{ route('home') }}"><i class="fa fa-wrench pr-2"></i>Produkty</a>
+                <a class="nav-link navka" href="{{ route('user.products') }}"><i class="fa fa-wrench pr-2"></i>Produkty</a>
             </li>
         </ul>
     </nav>
