@@ -23,4 +23,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::view('/logowanie', 'user.login');        
 Route::view('/rejestracja', 'user.register');    
-Route::view('/uzytkownicy', 'user.index')->name('user.index');        
+Route::view('/uzytkownicy', 'user.index')->name('user.index');     
+Route::view('/produkty', 'user.products')->name('user.products');       
