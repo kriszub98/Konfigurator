@@ -21,5 +21,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::view('/products', 'user.products')->name('products.index');
 Route::resource('users', App\Http\Controllers\UserController::class);
+
+
+Route::resource('products', App\Http\Controllers\ProductController::class);
+Route::view('/products/adminPanel', 'user.adminPanel')->name('products.adminPanel');
