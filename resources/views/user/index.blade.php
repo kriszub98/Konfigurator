@@ -16,8 +16,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Nazwa</th>
-                        <th>Przejdź</th>
-                        <th>Edycja</th>
+                        <th>Status</th>
+                        <th>Zablokuj</th>
                     </tr>
                 </thead>
 
@@ -25,8 +25,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Nazwa</th>
-                        <th>Przejdź</th>
-                        <th>Edytuj</th>
+                        <th>Status</th>
+                        <th>Zablokuj</th>
                     </tr>
                 </tfoot>
 
@@ -35,10 +35,8 @@
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
-                            <td><a href="{{ route('users.show', $user->id) }}" class="btn btn-success">Przejdź</a>
-                            </td>
-                            <td><a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edytuj</a>
-                            </td>
+                            <td>Aktywne</td>
+                            <td><a href="{{ route('users.edit', $user->id) }}" class="btn btn-danger">Edytuj</a></td>
                         @empty
                             <td colspan="5">Brak testów w bazie</td>
                         </tr>
