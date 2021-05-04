@@ -38,7 +38,7 @@
                             <td>Aktywne</td>
                             <td><a href="{{ route('users.edit', $user->id) }}" class="btn btn-danger">Edytuj</a></td>
                         @empty
-                            <td colspan="5">Brak testów w bazie</td>
+                            <td colspan="5">Brak użytkowników w bazie</td>
                         </tr>
                     @endforelse
 

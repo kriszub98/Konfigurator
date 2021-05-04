@@ -13,7 +13,6 @@ class SetSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Type::create(['name' => 'Płyta główna']);
         \App\Models\Component::create([
             'name' => 'MSI GamerZ', 
             'photo_path' => asset('/img/test'),

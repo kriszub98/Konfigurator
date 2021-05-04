@@ -1,7 +1,7 @@
 <nav class="nav navbar navbar-expand-lg navbar-white bg-white sticky-top">
     <div class="container d-flex">
         <a class="navbar-brand align-self-start" href="{{ route('home') }}"><img width="120px" height="auto"
-                src="../img/logo.png" alt="#"></a>
+                src="{{ asset('img/logo.png') }}" alt="#"></a>
 
         {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -30,8 +30,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                        document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                                                                        document.getElementById('logout-form').submit();">
                                 {{ __('Wyloguj') }}
                             </a>
 
@@ -84,7 +85,7 @@
                             class="fa fa-group pr-2"></i>Użytkownicy</a>
                 </li>
                 <li>
-                    <a class="nav-link navka" href="{{ route('products.index') }}"><i
+                    <a class="nav-link navka" href="{{ route('components.index') }}"><i
                             class="fa fa-wrench pr-2"></i>Produkty</a>
                 </li>
             </ul>
