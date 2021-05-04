@@ -25,4 +25,8 @@ class component extends Model
     public function type() {
         return $this->belongsTo(\App\Models\Type::class);
     }
+
+    public function requirements() {
+        return $this->belongsToMany(\App\Models\Requirement::class);
+    }
 }
