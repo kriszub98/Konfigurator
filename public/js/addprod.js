@@ -2,7 +2,7 @@ $(function() {
     $(document).on('click', '.btn-add', function(e) {
       e.preventDefault();
   
-      var dynaForm = $('.dynamic-wrap form:first'),
+      var dynaForm = $('.dynamic-wrap'),
         currentEntry = $(this).parents('.entry:first'),
         newEntry = $(currentEntry.clone()).appendTo(dynaForm);
   
@@ -23,7 +23,7 @@ $(function() {
     $(document).on('click', '.btn-add2', function(e) {
       e.preventDefault();
   
-      var dynaForm = $('.dynamic-wrap2 form:first'),
+      var dynaForm = $('.dynamic-wrap2'),
         currentEntry = $(this).parents('.entry:first'),
         newEntry = $(currentEntry.clone()).appendTo(dynaForm);
   

@@ -16,7 +16,7 @@ class CreateComponentsTable extends Migration
         Schema::create('components', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('photo_path');
+            $table->string('photo_path')->default('');
             $table->unsignedBigInteger('price');
             $table->boolean('is_produced');
             $table->foreignId('type_id')->constrained()->onUpdate('cascade')->onDelete('cascade');

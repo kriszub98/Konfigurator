@@ -27,4 +27,5 @@ Route::resource('users', App\Http\Controllers\UserController::class);
 Route::resource('components', App\Http\Controllers\ComponentController::class);
 Route::get('/components/showOfType/{type}', [App\Http\Controllers\ComponentController::class, 'showOfType'])->name('components.showOfType');
 Route::get('/components/createOfType/{type}', [App\Http\Controllers\ComponentController::class, 'createOfType'])->name('components.createOfType');
+Route::post('/components/storeOfType/{type}', [App\Http\Controllers\ComponentController::class, 'storeOfType'])->name('components.storeOfType');
 Route::view('/products/adminPanel', 'user.adminPanel')->name('products.adminPanel');

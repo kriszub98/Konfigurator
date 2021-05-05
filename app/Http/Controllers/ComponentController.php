@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Component;
+use App\Models\Type;
+use App\Models\Property;
+use App\Models\Requirement;
+use App\Models\Predefined;
+use App\Http\Requests\StoreComponentOfTypeRequest;
 
 class ComponentController extends Controller
 {
@@ -99,8 +104,51 @@ class ComponentController extends Controller
      */
     public function createOfType(\App\Models\Type $type)
     {
+        $types = Type::all();
         return view('component.createOfType', [
             'type' => $type,
+            'types' => $types,
         ]);
+    }
+
+
+    /**
+     * Stores the record in database
+     */
+    public function storeOfType(StoreComponentOfTypeRequest $request, \App\Models\Type $type)
+    {
+        $component = Component::create($request->validated() + ['type_id' => $type->id]);
+
+        for($i = 0; $i < count($request->param_names); $i++) {
+            $parameter = Property::create([
+                'name' => $request->param_names[$i],
+                'value' => $request->param_values[$i],
+            ]);
+            $component->properties()->attach($parameter);
+
+            if($request->param_required[$i] == 1) {
+                $predefined = Predefined::create(['name' => $request->param_names[$i]]);
+                $type->predefined()->attach($predefined);
+            }
+        }
+        //FOR DODAWANIE Parametru, jezeli istnieje to nie dodawaj, tylko zbierz id
+        
+        // Attach / sync
+
+        //FOR Dodawanie wymagań, jezeli istnieje to nie dodawaj, tylko zbierz id
+        // Attach / sync
+        for($i = 0; $i < count($request->requirement_names); $i++) {
+            $property = Property::create([
+                'name' => $request->requirement_names[$i],
+                'value' => $request->requirement_values[$i],
+            ]);
+
+            $requirement = Requirement::create([
+                'type_id' => $request->requirement_type[$i],
+                'property_id' => $property->id,
+            ]);
+
+            $component->requirements()->attach($requirement);
+        }
     }
 }
