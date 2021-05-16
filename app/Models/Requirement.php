@@ -12,4 +12,14 @@ class Requirement extends Model
         'type_id',
         'property_id',
     ];
+
+    public function type()
+    {
+        return $this->belongsTo(\App\Models\Type::class);
+    }
+
+    public function property()
+    {
+        return $this->belongsTo(\App\Models\Property::class);
+    }
 }

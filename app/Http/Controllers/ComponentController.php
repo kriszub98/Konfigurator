@@ -46,35 +46,40 @@ class ComponentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Component  $component
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Component $component)
     {
-        //
+        $component = Component::where('id', $component->id)->with(['type', 'properties', 'requirements'])->get();
+        dd($component);
+        return view('component.show', compact('component'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Component  $component
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Component  $component)
     {
-        //
+        $component = Component::where('id', $component->id)->with(['type', 'properties', 'requirements'])->first();
+        $types = Type::all();
+        // dd($component);
+        return view('component.edit', compact('component', 'types'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Component  $component
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Component  $component)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -89,7 +94,7 @@ class ComponentController extends Controller
     }
 
     /**
-     * Shows specific type of components
+     * Shows specific type of components in a table
      */
     public function showOfType(\App\Models\Type $type)
     {
@@ -118,37 +123,35 @@ class ComponentController extends Controller
     public function storeOfType(StoreComponentOfTypeRequest $request, \App\Models\Type $type)
     {
         $component = Component::create($request->validated() + ['type_id' => $type->id]);
-
+        
+        // Adding parameters that belong to component
         for($i = 0; $i < count($request->param_names); $i++) {
-            $parameter = Property::create([
+            $parameter = Property::firstOrCreate([
                 'name' => $request->param_names[$i],
                 'value' => $request->param_values[$i],
             ]);
-            $component->properties()->attach($parameter);
+            $component->properties()->syncWithoutDetaching($parameter);
 
             if($request->param_required[$i] == 1) {
-                $predefined = Predefined::create(['name' => $request->param_names[$i]]);
-                $type->predefined()->attach($predefined);
+                $predefined = Predefined::firstOrCreate(['name' => $request->param_names[$i]]);
+                $type->predefined()->syncWithoutDetaching($predefined);
             }
         }
-        //FOR DODAWANIE Parametru, jezeli istnieje to nie dodawaj, tylko zbierz id
-        
-        // Attach / sync
 
-        //FOR Dodawanie wymagań, jezeli istnieje to nie dodawaj, tylko zbierz id
-        // Attach / sync
+        // Adding requirements that belong to component
         for($i = 0; $i < count($request->requirement_names); $i++) {
-            $property = Property::create([
+            $property = Property::firstOrCreate([
                 'name' => $request->requirement_names[$i],
                 'value' => $request->requirement_values[$i],
             ]);
 
-            $requirement = Requirement::create([
+            $requirement = Requirement::firstOrCreate([
                 'type_id' => $request->requirement_type[$i],
                 'property_id' => $property->id,
             ]);
 
-            $component->requirements()->attach($requirement);
+            $component->requirements()->syncWithoutDetaching($requirement);
         }
+        return redirect()->route('components.showOfType', $type->id);
     }
 }
