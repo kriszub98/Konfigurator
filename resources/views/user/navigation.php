@@ -29,7 +29,7 @@
         </nav>
 		<nav class="navbot navbar navbar-expand-lg navbar-white bg-white sticky-top">
             <div class="container-fluid">
-                <div style="100%" class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 					<li class="nav-item">
 						<a style="width:150px; margin-left:20px" class="nav-link fa fa-heart-o navka" href="#">  Moje listy</a>

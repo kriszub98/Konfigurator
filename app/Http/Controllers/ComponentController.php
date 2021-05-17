@@ -51,8 +51,7 @@ class ComponentController extends Controller
      */
     public function show(Component $component)
     {
-        $component = Component::where('id', $component->id)->with(['type', 'properties', 'requirements'])->get();
-        dd($component);
+
         return view('component.show', compact('component'));
     }
 
