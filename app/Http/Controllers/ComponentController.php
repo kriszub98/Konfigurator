@@ -9,6 +9,7 @@ use App\Models\Property;
 use App\Models\Requirement;
 use App\Models\Predefined;
 use App\Http\Requests\StoreComponentOfTypeRequest;
+use App\Http\Requests\UpdateComponentRequest;
 
 class ComponentController extends Controller
 {
@@ -66,7 +67,6 @@ class ComponentController extends Controller
     {
         $component = Component::where('id', $component->id)->with(['type', 'properties', 'requirements'])->first();
         $types = Type::all();
-        // dd($component);
         return view('component.edit', compact('component', 'types'));
     }
 
@@ -77,9 +77,38 @@ class ComponentController extends Controller
      * @param  Component  $component
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Component  $component)
+    public function update(UpdateComponentRequest $request, Component  $component)
     {
-        dd($request);
+        $component->update($request->validated());
+
+        // Properties attachment
+        $component->properties()->detach();
+        
+        for($i = 0; $i < count($request->param_names); $i++) {
+            $parameter = Property::firstOrCreate([
+                'name' => $request->param_names[$i],
+                'value' => $request->param_values[$i],
+            ]);
+            $component->properties()->syncWithoutDetaching($parameter);
+        }
+        
+        // Requirements
+        $component->requirements()->detach();
+        
+        for($i = 0; $i < count($request->requirement_names); $i++) {
+
+            $property = Property::firstOrCreate([
+                'name' => $request->requirement_names[$i],
+                'value' => $request->requirement_values[$i],
+            ]);
+
+            $requirement = Requirement::firstOrCreate([
+                'type_id' => $request->requirement_type[$i],
+                'property_id' => $property->id,
+            ]);
+
+            $component->requirements()->syncWithoutDetaching($requirement);
+        }
     }
 
     /**

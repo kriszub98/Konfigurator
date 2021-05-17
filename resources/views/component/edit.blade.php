@@ -7,21 +7,16 @@
 
 @section('content')
     <div class="container">
-        <form role="form" action="{{ route('components.update', $component->id) }}" method="POST">
+        <form role="form" action="{{ route('components.update', $component) }}" method="POST">
             @csrf
             @method('PUT')
 
             {{-- Component data --}}
             <div class="row">
                 <div class="col col-md-6 col-12">
-                    <div class="col mt-2 d-flex justify-content-center">
-                        <button class="btn btn-primary d-block center" type="button" id="loadFileXml"
-                            onclick="document.getElementById('file').click();">Dodaj zdjęcie</button>
-                        <input type="file" style="display:none;" id="file" name="file" accept="image/*"
-                            onchange="loadFile(event)" />
-                    </div>
                     <div class="row mt-3">
-                        <img class="im" id="output" style="max-width:90%;" />
+                        <img class="im" id="output" style="max-width:90%;" src="{{ $component->photo_path }}"
+                            alt="Zdjęcie komponentu" />
                     </div>
                 </div>
                 <div class="col mt-5">
@@ -55,8 +50,7 @@
                             @forelse ($component->properties as $property)
                                 <div class="entry input-group">
                                     <input class="form-control" name="param_names[]" type="text"
-                                        placeholder="Nazwa parametru" autocomplete="off" value="{{ $property->name }}"
-                                        readonly />
+                                        placeholder="Nazwa parametru" autocomplete="off" value="{{ $property->name }}" />
 
                                     <input class="form-control" name="param_values[]" type="text" placeholder="Wartość"
                                         autocomplete="off" value="{{ $property->value }}" />
@@ -72,10 +66,6 @@
                                 <input class="form-control" name="param_values[]" type="text" placeholder="Wartość"
                                     autocomplete="off" />
 
-                                <select class="form-control" name="param_required[]">
-                                    <option value="1">Wymagane</option>
-                                    <option value="0">Nie wymagane</option>
-                                </select>
                                 <span class="input-group-btn">
                                     <button class="btn btn-success btn-add ms-2" type="button">
                                         <span class="fa fa-plus"></span>
@@ -94,8 +84,8 @@
                     <hr class="mb-4">
                     <div class="col-sm-10 mt-2">
                         <div class="dynamic-wrap2">
-                            <div class="entry input-group">
-                                @forelse ($component->requirements as $requirement)
+                            @forelse ($component->requirements as $requirement)
+                                <div class="entry input-group">
                                     <select class="form-control" name="requirement_type[]">
                                         @forelse ($types as $type)
                                             <option value="{{ $type->id }}" @if ($type->id == $requirement->type->id) selected="selected" @endif>
@@ -109,14 +99,11 @@
 
                                     <input class="form-control" name="requirement_values[]" type="text"
                                         placeholder="Wartość" value="{{ $requirement->property->value }}" />
-                                @empty
+                                </div>
+                            @empty
 
-                                @endforelse
-                            </div>
+                            @endforelse
                             <div class="entry input-group">
-
-
-
                                 <select class="form-control" name="requirement_type[]">
                                     @forelse ($types as $type)
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -143,7 +130,7 @@
             </div>
 
             <div class="row d-flex justify-content-center mt-5">
-                <button type="submit" class="btn btn-primary w-25 center">Dodaj</button>
+                <button type="submit" class="btn btn-primary w-25 center">Zapisz zmiany</button>
             </div>
         </form>
     </div>
