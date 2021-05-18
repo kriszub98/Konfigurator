@@ -1,51 +1,39 @@
-$(function() {
-    $(document).on('click', '.btn-add', function(e) {
-      e.preventDefault();
-  
-      var dynaForm = $('.dynamic-wrap'),
-        currentEntry = $(this).parents('.entry:first'),
-        newEntry = $(currentEntry.clone()).appendTo(dynaForm);
-  
-      newEntry.find('input').val('');
-      dynaForm.find('.entry:not(:last) .btn-add')
-        .removeClass('btn-add').addClass('btn-remove')
-        .removeClass('btn-success').addClass('btn-danger')
-        .html('<span class="fa fa-minus"></span>');
-    }).on('click', '.btn-remove', function(e) {
-      $(this).parents('.entry:first').remove();
-  
-      e.preventDefault();
-      return false;
-    });
-  });
+$("#addRow").click(function () {
+  var html = '';
+  html += '<div id="inputFormRow">';
+  html += '<div class="input-group mb-3">';
+  html += ' <input class="form-control" name="param_names[]" type="text" placeholder="Nazwa parametru" autocomplete="off" />';
+  html += ' <input class="form-control" name="param_values[]" type="text" placeholder="Wartość" autocomplete="off" />';
+  html += ' <select class="form-control" name="param_required[]"><option value="1">Wymagane</option><option value="0">Nie wymagane</option></select>';
+  html += '<div class="input-group-append">';
+  html += '<button id="removeRow" type="button" class="btn btn-danger"><span class="fa fa-minus"></span></button>';
+  html += '</div>';
+  html += '</div>';
 
-  $(function() {
-    $(document).on('click', '.btn-add2', function(e) {
-      e.preventDefault();
-  
-      var dynaForm = $('.dynamic-wrap2'),
-        currentEntry = $(this).parents('.entry:first'),
-        newEntry = $(currentEntry.clone()).appendTo(dynaForm);
-  
-      newEntry.find('input').val('');
-      dynaForm.find('.entry:not(:last) .btn-add2')
-        .removeClass('btn-add2').addClass('btn-remove')
-        .removeClass('btn-success').addClass('btn-danger')
-        .html('<span class="fa fa-minus"></span>');
-    }).on('click', '.btn-remove', function(e) {
-      $(this).parents('.entry:first').remove();
-  
-      e.preventDefault();
-      return false;
-    });
-  });
+  $('#newRow').append(html);
+});
 
-var loadFile = function (event) 
-{
-  var output = document.getElementById('output');
-  output.src = URL.createObjectURL(event.target.files[0]);
-  output.onload = function () 
-  {
-    URL.revokeObjectURL(output.src) // free memory
-  }
-};
+// remove row
+$(document).on('click', '#removeRow', function () {
+  $(this).closest('#inputFormRow').remove();
+});
+
+$("#addRow2").click(function () {
+  var html = '';
+  html += '<div id="inputFormRow2">';
+  html += '<div class="input-group mb-3">';
+  html += '<select class="form-control" name="requirement_type[]">@forelse ($types as $type)<option value="{{ $type->id }}">{{ $type->name }}</option>@empty<option value=""></option>@endforelse</select>';
+  html += '<input class="form-control" name="requirement_names[]" type="text" placeholder="Nazwa parametru" />';
+  html += '<input class="form-control" name="requirement_values[]" type="text" placeholder="Wartość" />';
+  html += '<div class="input-group-append">';
+  html += '<button id="removeRow2" type="button" class="btn btn-danger"><span class="fa fa-minus"></span></button>';
+  html += '</div>';
+  html += '</div>';
+
+  $('#newRow2').append(html);
+});
+
+// remove row
+$(document).on('click', '#removeRow2', function () {
+  $(this).closest('#inputFormRow2').remove();
+});
