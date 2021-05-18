@@ -29,3 +29,7 @@ Route::get('/components/showOfType/{type}', [App\Http\Controllers\ComponentContr
 Route::get('/components/createOfType/{type}', [App\Http\Controllers\ComponentController::class, 'createOfType'])->name('components.createOfType');
 Route::post('/components/storeOfType/{type}', [App\Http\Controllers\ComponentController::class, 'storeOfType'])->name('components.storeOfType');
 Route::view('/products/adminPanel', 'user.adminPanel')->name('products.adminPanel');
+
+Route::get('/sets/addComponent/{type}/{component}', [App\Http\Controllers\ConfiguratorController::class, 'addComponent'])->name('sets.addComponent');
+Route::get('/configurator', [App\Http\Controllers\ConfiguratorController::class, 'configurator'])->name('sets.configurator');
+Route::resource('sets', App\Http\Controllers\ConfiguratorController::class);

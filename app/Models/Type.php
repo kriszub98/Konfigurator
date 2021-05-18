@@ -16,4 +16,8 @@ class Type extends Model
     public function predefined() {
         return $this->belongsToMany(\App\Models\Predefined::class);
     }
+
+    public function components() {
+        return $this->hasMany(\App\Models\Component::class);
+    }
 }

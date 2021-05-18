@@ -92,8 +92,10 @@
                         <div class="dynamic-wrap2">
                             <div class="entry input-group">
                                 <select class="form-control" name="requirement_type[]">
-                                    @forelse ($types as $type)
-                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                    @forelse ($types as $type_el)
+                                        @if ($type_el->id == 9 || $type_el->id > $type->id)
+                                            <option value="{{ $type_el->id }}">{{ $type_el->name }}</option>
+                                        @endif
                                     @empty
                                         <option value=""></option>
                                     @endforelse
