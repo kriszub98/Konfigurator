@@ -81,8 +81,8 @@
                 <h5> Wymagania </h5>
                 <hr class="mb-4">
                 <div class="col-sm-10 mt-2">
+                    @forelse ($component->requirements as $requirement)
                     <div class="entry input-group">
-                        @forelse ($component->requirements as $requirement)
                             <select class="form-control" name="requirement_type[]">
                                 @forelse ($types as $type)
                                     @if ($type->id >= $component->type->id)
@@ -96,9 +96,9 @@
                                  placeholder="Nazwa parametru" value="{{ $requirement->property->name }}" />
                             <input class="form-control" name="requirement_values[]" type="text"
                                  placeholder="Wartość" value="{{ $requirement->property->value }}" />
+                        </div>
                         @empty
                         @endforelse
-                    </div>
                     <div class="entry input-group">
                         <div class="col-lg-12">
                             <div id="inputFormRow2">

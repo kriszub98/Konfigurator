@@ -116,9 +116,10 @@ class ComponentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(\App\Models\Component $component)
     {
-        //
+        $component->delete();
+        return redirect()->back();
     }
 
     /**

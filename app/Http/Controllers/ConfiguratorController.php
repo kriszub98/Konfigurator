@@ -86,7 +86,7 @@ class ConfiguratorController extends Controller
     {
         session()->forget('chosen_components');
         $type = \App\Models\Type::findOrFail(1)->with('components')->first();
-        return view('component_set.configurator', ['type' => $type, 'components' => $type->components]);
+        return view('component_set.configurator', ['type' => $type, 'components' => $type->components, 'requirements' => []]);
     }
 
     public function addComponent(Request $request, \App\Models\Type $type, \App\Models\Component $component)
@@ -123,12 +123,15 @@ class ConfiguratorController extends Controller
                 }
             }
         }
+        // dd($passed_requirements);
+
 
         if(count($requirements) == 0) 
         {
             return view('component_set.configurator', [
                 'type' => $type, 
-                'components' => \App\Models\Component::where('type_id', $type->id)->get(), 
+                'components' => \App\Models\Component::where('type_id', $type->id)->get(),
+                'requirements' => [],
             ]);
         }
         
@@ -151,7 +154,7 @@ class ConfiguratorController extends Controller
         return view('component_set.configurator', [
             'type' => $type, 
             'components' => $components, 
-            'passed_requirements' => $requirements,
+            'requirements' => $requirements,
         ]);
     }
 

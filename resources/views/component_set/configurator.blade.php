@@ -3,11 +3,11 @@
 @section('content')
     <div class="container">
         <h5>Zastosowane parametry:</h5>
+        <div>
+        </div>
         <h1 class="text-center">{{ $type->name }}</h1>
         <main class="row justify-content-between">
-            <div>
 
-            </div>
 
 
             @forelse ($components as $component)

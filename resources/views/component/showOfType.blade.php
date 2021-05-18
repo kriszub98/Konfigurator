@@ -50,10 +50,16 @@
                             <td><a href="{{ route('components.show', $component->id) }}"
                                     class="btn btn-primary">Przejdz</a>
                             </td>
-                            <td><a href="{{ route('components.edit', $component->id) }}"
+                            <td>
+                                <a href="{{ route('components.edit', $component->id) }}"
                                     class="btn btn-warning">Edytuj</a>
                             </td>
-                            <td><a href="{{ route('components.edit', $component->id) }}" class="btn btn-danger">Usuń</a>
+                            <td>
+                                <form action="{{ route('components.destroy', $component) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Usuń</button>
+                                </form>
                             </td>
                         @empty
                             <td colspan="5">Brak komponentów w bazie</td>
