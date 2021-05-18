@@ -151,7 +151,7 @@ class ComponentController extends Controller
      */
     public function storeOfType(StoreComponentOfTypeRequest $request, \App\Models\Type $type)
     {
-        $component = Component::create($request->validated() + ['type_id' => $type->id]);
+        $component = Component::create($request->validated() + ['type_id' => $type->id, 'photo_path' => 'https://www.filtrowanie.com.pl/wp-content/uploads/2017/07/brak-zdjecia.png']);
         
         // Adding parameters that belong to component
         for($i = 0; $i < count($request->param_names); $i++) {
