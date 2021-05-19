@@ -99,19 +99,22 @@ class ComponentController extends Controller
         }
 
         // Adding requirements that belong to component
-        for($i = 0; $i < count($request->requirement_names); $i++) {
-            $property = Property::firstOrCreate([
-                'name' => $request->requirement_names[$i],
-                'value' => $request->requirement_values[$i],
-            ]);
-
-            $requirement = Requirement::firstOrCreate([
-                'type_id' => $request->requirement_type[$i],
-                'property_id' => $property->id,
-            ]);
-
-            $component->requirements()->syncWithoutDetaching($requirement);
+        if($request->requirement_names) {
+            for($i = 0; $i < count($request->requirement_names); $i++) {
+                $property = Property::firstOrCreate([
+                    'name' => $request->requirement_names[$i],
+                    'value' => $request->requirement_values[$i],
+                ]);
+                    
+                $requirement = Requirement::firstOrCreate([
+                    'type_id' => $request->requirement_type[$i],
+                    'property_id' => $property->id,
+                ]);
+                    
+                $component->requirements()->syncWithoutDetaching($requirement);
+            }
         }
+        $component->save();
         return redirect()->route('components.show', $component);
     }
 
@@ -173,6 +176,7 @@ class ComponentController extends Controller
         }
 
         // Adding requirements that belong to component
+        if($request->requirements_names) {
         for($i = 0; $i < count($request->requirement_names); $i++) {
             $property = Property::firstOrCreate([
                 'name' => $request->requirement_names[$i],
@@ -185,6 +189,7 @@ class ComponentController extends Controller
             ]);
 
             $component->requirements()->syncWithoutDetaching($requirement);
+        }
         }
         return redirect()->route('components.showOfType', $type->id);
     }
