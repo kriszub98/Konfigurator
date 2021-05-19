@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col mt-2 col-md-6 col-12 d-flex justify-content-center">
                 <div class="img">
-                    {{ $component->photo_path }}
+                    <img class="img-fluid" src="{{ $component->photo_path }}" />
                 </div>
             </div>
             
