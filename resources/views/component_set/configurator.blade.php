@@ -4,6 +4,11 @@
     <div class="container">
         <h5>Zastosowane parametry:</h5>
         <div>
+            @forelse ($requirements as $requirement)
+                {{ $requirement['name'] }} {{ $requirement['value'] }}
+            @empty
+
+            @endforelse
         </div>
         <h1 class="text-center">{{ $type->name }}</h1>
         <main class="row justify-content-between">

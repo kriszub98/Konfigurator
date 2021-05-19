@@ -82,20 +82,24 @@ class ComponentController extends Controller
 
         // Properties attachment
         $component->properties()->detach();
+        $component->requirements()->detach();
         
+        // Adding parameters that belong to component
         for($i = 0; $i < count($request->param_names); $i++) {
             $parameter = Property::firstOrCreate([
                 'name' => $request->param_names[$i],
                 'value' => $request->param_values[$i],
             ]);
             $component->properties()->syncWithoutDetaching($parameter);
-        }
-        
-        // Requirements
-        $component->requirements()->detach();
-        
-        for($i = 0; $i < count($request->requirement_names); $i++) {
 
+            // if($request->param_required[$i] == 1) {
+            //     $predefined = Predefined::firstOrCreate(['name' => $request->param_names[$i]]);
+            //     $type->predefined()->syncWithoutDetaching($predefined);
+            // }
+        }
+
+        // Adding requirements that belong to component
+        for($i = 0; $i < count($request->requirement_names); $i++) {
             $property = Property::firstOrCreate([
                 'name' => $request->requirement_names[$i],
                 'value' => $request->requirement_values[$i],

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -61,5 +62,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function changePassword(Request $request) {
+        if($request->newPass != $request->repeatNewPass) return;
+        Auth::user()->update(['password' => bcrypt($request->newPass)]);
+        return redirect()->back();
+        // dd(Auth::user()->password == password_hash($request->oldPass, PASSWORD_DEFAULT));
+        // if(bcrypt($request->oldPass) == Auth::user()->password) {
+        // }
     }
 }

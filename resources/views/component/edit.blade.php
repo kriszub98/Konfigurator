@@ -86,7 +86,7 @@
                             <select class="form-control" name="requirement_type[]">
                                 @forelse ($types as $type)
                                     @if ($type->id >= $component->type->id)
-                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                        <option value="{{ $type->id }}" @if($requirement->type->name == $type->name) selected="selected"@endif>{{ $type->name }}</option>
                                     @endif 
                                 @empty
                                     <option value=""></option>

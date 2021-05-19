@@ -131,7 +131,7 @@ class ConfiguratorController extends Controller
             return view('component_set.configurator', [
                 'type' => $type, 
                 'components' => \App\Models\Component::where('type_id', $type->id)->get(),
-                'requirements' => [],
+                'requirements' => $passed_requirements,
             ]);
         }
         
@@ -154,7 +154,7 @@ class ConfiguratorController extends Controller
         return view('component_set.configurator', [
             'type' => $type, 
             'components' => $components, 
-            'requirements' => $requirements,
+            'requirements' => $passed_requirements,
         ]);
     }
 
