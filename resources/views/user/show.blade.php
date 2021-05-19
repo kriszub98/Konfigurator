@@ -12,8 +12,6 @@
             <form action="{{ route('users.changePassword') }}" method="POST">
                 @csrf
                 <div class="container">
-                    <h6> Stare hasło: </h6>
-                    <input type="password" class="d-block w-100" name="oldPass">
                     <h6> Nowe hasło: </h6>
                     <input type="password" class="d-block w-100" name="newPass">
                     <h6> Powtórz nowe hasło: </h6>

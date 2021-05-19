@@ -65,11 +65,8 @@ class UserController extends Controller
     }
 
     public function changePassword(Request $request) {
-        if($request->newPass != $request->repeatNewPass) return;
+        if($request->newPass != $request->repeatNewPass) return redirect()->back();
         Auth::user()->update(['password' => bcrypt($request->newPass)]);
         return redirect()->back();
-        // dd(Auth::user()->password == password_hash($request->oldPass, PASSWORD_DEFAULT));
-        // if(bcrypt($request->oldPass) == Auth::user()->password) {
-        // }
     }
 }
