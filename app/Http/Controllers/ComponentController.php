@@ -112,6 +112,7 @@ class ComponentController extends Controller
 
             $component->requirements()->syncWithoutDetaching($requirement);
         }
+        return redirect()->route('components.show', $component);
     }
 
     /**
