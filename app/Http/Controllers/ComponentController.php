@@ -176,20 +176,20 @@ class ComponentController extends Controller
         }
 
         // Adding requirements that belong to component
-        if($request->requirements_names) {
-        for($i = 0; $i < count($request->requirement_names); $i++) {
-            $property = Property::firstOrCreate([
-                'name' => $request->requirement_names[$i],
-                'value' => $request->requirement_values[$i],
-            ]);
+        if($request->requirement_names) {
+            for($i = 0; $i < count($request->requirement_names); $i++) {
+                $property = Property::firstOrCreate([
+                    'name' => $request->requirement_names[$i],
+                    'value' => $request->requirement_values[$i],
+                ]);
 
-            $requirement = Requirement::firstOrCreate([
-                'type_id' => $request->requirement_type[$i],
-                'property_id' => $property->id,
-            ]);
+                $requirement = Requirement::firstOrCreate([
+                    'type_id' => $request->requirement_type[$i],
+                    'property_id' => $property->id,
+                ]);
 
-            $component->requirements()->syncWithoutDetaching($requirement);
-        }
+                $component->requirements()->syncWithoutDetaching($requirement);
+            }
         }
         return redirect()->route('components.showOfType', $type->id);
     }
