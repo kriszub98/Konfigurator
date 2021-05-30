@@ -10,9 +10,9 @@
         <div class="col-md-12">
             <h1 class="text-white fs-1 d-flex center me-5"> Witamy na naszej stronie </h1>
             <div class="col d-flex justify-content-center">
-                <button type="submit" href="{{ route('sets.configurator') }}" class="btn text-white w-50 fs-2 mt-5" style="border: 4px solid white; border-radius: 25px;">
+                <a type="submit" href="{{ route('sets.configurator') }}" class="btn text-white w-50 fs-2 mt-5" style="border: 4px solid white; border-radius: 25px;">
                     {{ __('Przejdź do konfiguratora') }}
-                </button>
+                </a>
             </div>
         </div>
     </div>

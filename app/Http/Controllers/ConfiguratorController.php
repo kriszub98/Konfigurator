@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Component;
+
 class ConfiguratorController extends Controller
 {
     /**
@@ -104,7 +106,18 @@ class ConfiguratorController extends Controller
 
         if($type->id >= 9) 
         {
-            return $request->session()->get('chosen_components');
+            //return $request->session()->get('chosen_components');
+            return view('component_set.show', ['chosen_components' => [
+                Component::findOrFail(5),
+                Component::findOrFail(7),
+                Component::findOrFail(8),
+                Component::findOrFail(9),
+                Component::findOrFail(10),
+                Component::findOrFail(11),
+                Component::findOrFail(6),
+                Component::findOrFail(12),
+                Component::findOrFail(14),
+            ]]);
         }
 
         $type = \App\Models\Type::where('id', $type->id + 1)->with('components')->first();
