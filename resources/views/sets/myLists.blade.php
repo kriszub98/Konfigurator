@@ -1,7 +1,12 @@
 @extends('layouts.app')
 @section('title', 'Moje zestawy')
 @section('content')
+<style>
+        h2, p{
+            color: black;
+        }
 
+    </style>
 
 
     <div class="container">
@@ -31,8 +36,8 @@
                             <p class="col-12 col-md-8">Zestaw prywatny</p>
                         @endif
 
-                        <div class="col-12 col-md-4">
-                            <div class="card-text">Cena: {{ $set->components->sum('price') }} zł</div>
+                        <div class="col-12 col-md-4 mt-2">
+                            <p class="card-text text-danger fs-5">Cena: {{ $set->components->sum('price') }} zł</p>
                         </div>
 
                     </div>

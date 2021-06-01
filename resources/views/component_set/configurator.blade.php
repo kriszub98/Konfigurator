@@ -32,10 +32,14 @@
                 </div>
             @empty
                 <h1 class="text-danger text-center">Brak komponentów spełniających wymagania</h1>
-                <a class="btn btn-primary" href="{{ route('configurator.pass', ['type' => $type]) }}">Pass</a>
+                <div class="row d-flex justify-content-center mt-4">
+                    <a class="btn btn-primary w-25" href="{{ route('configurator.pass', ['type' => $type]) }}">Pomiń</a>
+                </div>
             @endforelse
             @if ($components)
-                <a class="btn btn-primary" href="{{ route('configurator.pass', ['type' => $type]) }}">Pass</a>
+            <div class="row d-flex justify-content-center mt-4">
+                    <a class="btn btn-primary w-25" href="{{ route('configurator.pass', ['type' => $type]) }}">Pomiń</a>
+                </div>
             @endif
         </div>
     </div>

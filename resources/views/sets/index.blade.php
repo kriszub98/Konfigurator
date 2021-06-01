@@ -1,11 +1,21 @@
 @extends('layouts.app')
 @section('title', 'Moje zestawy')
 @section('content')
+    <style>
+        h2, p{
+            color: black;
+        }
+
+    </style>
     <div class="container">
         @forelse($sets as $set)
             <a href="{{ route('sets.show', $set) }}">
                 <div class="row card-body border mb-2">
-                    <h2 class="card-title text-black fw-bold text-center">{{ $set->name }}</h2>
+                    <div class="col-md-12 col-12">
+                        <h2 class=" text-black fw-bold text-center">{{ $set->name }}</h2>
+                        <p class="text-end">
+                            <i class="fa fa-user"></i> {{ $set->user->name }}</p>
+                    </div>
 
                     <div class="col-12 row">
                         <div class="col-12 col-md-4">
@@ -15,6 +25,7 @@
                                 <p class="card-text">Możliwy do zrealizowania: Tak</p>
                             @endif
                         </div>
+                        
 
                         @if ($set->is_public == 1)
                             <div class="col-12 col-md-4">
@@ -28,8 +39,8 @@
                             <p class="col-12 col-md-8">Zestaw prywatny</p>
                         @endif
 
-                        <div class="col-12 col-md-4">
-                            <div class="card-text">Cena: {{ $set->components->sum('price') }} zł</div>
+                        <div class="col-12 col-md-4 mt-2">
+                            <p class="card-text text-danger fs-5">Cena: {{ $set->components->sum('price') }} zł</p>
                         </div>
 
                     </div>

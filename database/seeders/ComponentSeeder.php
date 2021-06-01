@@ -15,7 +15,7 @@ class ComponentSeeder extends Seeder
     {
         $component = \App\Models\Component::create([
         'name' => 'Procek 1',
-        'photo_path' => '',
+        'photo_path' => 'https://www.filtrowanie.com.pl/wp-content/uploads/2017/07/brak-zdjecia.png',
         'price' => '123',
         'is_produced' => 1,
         'type_id' => 1,
@@ -31,7 +31,7 @@ class ComponentSeeder extends Seeder
 
         $component = \App\Models\Component::create([
         'name' => 'Plyta 1',
-        'photo_path' => '',
+        'photo_path' => 'https://www.filtrowanie.com.pl/wp-content/uploads/2017/07/brak-zdjecia.png',
         'price' => '123',
         'is_produced' => 1,
         'type_id' => 2,
@@ -44,7 +44,7 @@ class ComponentSeeder extends Seeder
 
         $component = \App\Models\Component::create([
         'name' => 'RAM 1',
-        'photo_path' => '',
+        'photo_path' => 'https://www.filtrowanie.com.pl/wp-content/uploads/2017/07/brak-zdjecia.png',
         'price' => '123',
         'is_produced' => 1,
         'type_id' => 3,
@@ -57,7 +57,7 @@ class ComponentSeeder extends Seeder
 
         $component = \App\Models\Component::create([
         'name' => 'Karta Graficzna 1',
-        'photo_path' => '',
+        'photo_path' => 'https://www.filtrowanie.com.pl/wp-content/uploads/2017/07/brak-zdjecia.png',
         'price' => '123',
         'is_produced' => 1,
         'type_id' => 4,
@@ -70,7 +70,7 @@ class ComponentSeeder extends Seeder
 
         $component = \App\Models\Component::create([
         'name' => 'Dysk HDD 1',
-        'photo_path' => '',
+        'photo_path' => 'https://www.filtrowanie.com.pl/wp-content/uploads/2017/07/brak-zdjecia.png',
         'price' => '123',
         'is_produced' => 1,
         'type_id' => 5,
@@ -83,7 +83,7 @@ class ComponentSeeder extends Seeder
 
         $component = \App\Models\Component::create([
         'name' => 'Dysk SSD 1',
-        'photo_path' => '',
+        'photo_path' => 'https://www.filtrowanie.com.pl/wp-content/uploads/2017/07/brak-zdjecia.png',
         'price' => '123',
         'is_produced' => 1,
         'type_id' => 6,
@@ -96,7 +96,7 @@ class ComponentSeeder extends Seeder
 
         $component = \App\Models\Component::create([
             'name' => 'Chlodzenie 1',
-            'photo_path' => '',
+            'photo_path' => 'https://www.filtrowanie.com.pl/wp-content/uploads/2017/07/brak-zdjecia.png',
             'price' => '123',
             'is_produced' => 1,
             'type_id' => 7,
@@ -109,7 +109,7 @@ class ComponentSeeder extends Seeder
 
         $component = \App\Models\Component::create([
             'name' => 'Zasilacz 1',
-            'photo_path' => '',
+            'photo_path' => 'https://www.filtrowanie.com.pl/wp-content/uploads/2017/07/brak-zdjecia.png',
             'price' => '123',
             'is_produced' => 1,
             'type_id' => 8,
@@ -122,7 +122,7 @@ class ComponentSeeder extends Seeder
 
         $component = \App\Models\Component::create([
             'name' => 'Obudowa 1',
-            'photo_path' => '',
+            'photo_path' => 'https://www.filtrowanie.com.pl/wp-content/uploads/2017/07/brak-zdjecia.png',
             'price' => '123',
             'is_produced' => 1,
             'type_id' => 9,

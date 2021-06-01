@@ -30,7 +30,7 @@
                                     @empty   
                                     @endforelse
                                 </div>
-                                <div class="row mt-5">
+                                <div class="row pt-4">
                                     <h5 class="text-danger">{{ $component->price }} zł</h5>
                                 </div>
                             </div>

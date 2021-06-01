@@ -6,23 +6,36 @@
 @section('content')
     <div class="container">
         @forelse ($set->components as $component)
-            <div class="card mb-3">
+        <div class="card mb-3">
                 <a href="{{ route('components.show', $component->id) }}">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col">
                             <img src="{{ $component->photo_path }}" style="width:200px; height:200px; object-fit:contain">
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h4 class="card-title text-dark">{{ $component->name }}</h4>
-                                <p class="card-text text-dark">
+                        <div class="col-md-9">
+                            <div class="col-12">
+                                <h4 class="card-title text-dark mt-2">{{ $component->name }}</h4>
+                                <p class="card-text text-dark col-12">
                                     @if ($component->is_produced == 1)
                                         <p class="text-dark">Produkowany: Tak</p>
                                     @else
                                         <p class="text-dark">Produkowany: Nie</p>
                                     @endif
                                 </p>
-                                <h5 class="card-text text-danger">{{ $component->price }} zł</h5>
+
+                                {{-- Component params --}}
+                                <div class="row">
+                                    @forelse ($component->properties->splice(0, 6) as $property)
+                                        <div class="col-md-4 col-12">
+                                            <span class="text-black-50">{{ $property->name }}:</span> 
+                                            <span class="text-dark">{{ $property->value }}</span>
+                                        </div>
+                                    @empty   
+                                    @endforelse
+                                </div>
+                                <div class="row pt-4">
+                                    <h5 class="text-danger">{{ $component->price }} zł</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
