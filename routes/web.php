@@ -38,3 +38,4 @@ Route::get('/myLists', [App\Http\Controllers\ConfiguratorController::class, 'myL
 Route::post('/comment/{set}', [App\Http\Controllers\ConfiguratorController::class, 'comment'])->name('sets.comment');
 Route::post('/rate/{set}', [App\Http\Controllers\ConfiguratorController::class, 'rate'])->name('sets.rate');
 Route::get('/comments/{comment}/delete', [App\Http\Controllers\ConfiguratorController::class, 'deleteComment'])->name('comments.delete');
+Route::get('/sets/pass/{type}', [App\Http\Controllers\ConfiguratorController::class, 'passComponent'])->name('configurator.pass');
