@@ -31,6 +31,11 @@
         @empty
         @endforelse
 
+        <div class="col">
+           <h4 class="text-danger">Cena zestawu: {{ $set->components->sum('price') }} zł</h4>
+        </div>
+        
+
         @guest
 
         @else
