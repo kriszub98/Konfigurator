@@ -174,11 +174,66 @@ class ConfiguratorController extends Controller
         ]);
     }
 
-    public function passComponent(\App\Models\Type $type)
+    public function passComponent(Request $request, \App\Models\Type $type)
     {
-        // Logic that adds requirements to the components and then passes type, component and requirements to show inside 
-        // configurator view
-        return view('component_set.configurator', compact(''));
+        if($type->id >= 9) 
+        {
+            $chosen_components = collect($request->session()->get('chosen_components'))->map(function ($item) {
+                return Component::findOrFail($item['component']);
+            });
+            return view('component_set.show', compact('chosen_components'));
+        }
+
+        $type = \App\Models\Type::where('id', $type->id + 1)->with('components')->first();
+
+        //Get requirements
+        $requirements = [];
+        $passed_requirements = [];
+        if($request->session()->exists('chosen_components'))
+        {
+            foreach($request->session()->get('chosen_components') as $chosen_component) 
+            {
+                $component = \App\Models\Component::findOrFail($chosen_component['component']);
+                foreach($component->requirements as $requirement) 
+                {
+                    if($requirement->type->id == $type->id) {
+                        array_push($requirements, $requirement->property->id);
+                        array_push($passed_requirements, ['name' => $requirement->property->name, 'value' => $requirement->property->value]);
+                    }
+                }
+            }
+        }
+
+        if(count($requirements) == 0) 
+        {
+            return view('component_set.configurator', [
+                'type' => $type, 
+                'components' => \App\Models\Component::where('type_id', $type->id)->get(),
+                'requirements' => $passed_requirements,
+            ]);
+        }
+        
+        $all_components = \App\Models\Component::where('type_id', $type->id)->get();
+        $components = [];
+        foreach($all_components as $component) {
+            // dd($requirements);
+            // dd($component);
+            // dd($component->properties);
+            // dd($component->properties->find([0 => 2])->count() == 0);
+            // dd($component->properties->find([0 => 4]));
+            if($component->properties->find($requirements)->count() != 0) {
+                // dd($component);
+                array_push($components, $component);
+            }
+            // dd($components);
+        }
+
+
+        return view('component_set.configurator', [
+            'type' => $type, 
+            'components' => $components, 
+            'requirements' => $passed_requirements,
+        ]);
     }
 
     public function myLists()
