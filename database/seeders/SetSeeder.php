@@ -23,7 +23,7 @@ class SetSeeder extends Seeder
         \App\Models\Property::create(['name' => 'Socket', 'value' => '1150']);
         \App\Models\Predefined::create(['name' => 'Socket']);
         \App\Models\Requirement::create(['type_id' => '1', 'property_id' => '1']);
-        \App\Models\Set::create(['name' => 'Tani szybki', 'user_id' => 1]);
+        \App\Models\Set::create(['name' => 'Tani szybki', 'user_id' => 1, 'is_public' => 1]);
         
         \App\Models\Type::findOrFail(1)->predefined()->attach(1);
         \App\Models\Component::findOrFail(1)->properties()->attach(1);

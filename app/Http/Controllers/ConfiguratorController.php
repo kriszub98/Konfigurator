@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\Component;
 use App\Models\Set;
-use Auth;
+use App\Models\Comment;
+use App\Models\Rating;
+use Illuminate\Support\Facades\Auth;
 
 class ConfiguratorController extends Controller
 {
@@ -38,8 +40,12 @@ class ConfiguratorController extends Controller
      */
     public function store(Request $request)
     {
-        // {name: component name, set_public-> tablica, chosen_components -> tablica z id itemkow}
-        dd($request->chosen_components);
+        $set = \App\Models\Set::create([
+            'name' => $request->name,
+            'is_public' => $request->is_public,
+            'user_id' => Auth::id()
+        ]);
+        $set->components()->attach($request->chosen_components);
     }
 
     /**
@@ -48,9 +54,9 @@ class ConfiguratorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(\App\Models\Set $set)
     {
-        //
+        return dd($set->components);
     }
 
     /**
@@ -177,4 +183,26 @@ class ConfiguratorController extends Controller
     {
         return view('sets.myLists', Set::where('user_id', Auth::id())->get());
     }
+
+    public function comment(Request $request, Set $set)
+    {
+        Comment::create([
+            'set_id' => $set->id,
+            'user_id' => Auth::id(),
+            'content' => $request->content
+        ]);
+        return redirect()->back();
+    }
+
+    public function rate(Request $request, Set $set)
+    {
+        // TUTAJ SPRAWDZ CZY NIE OCENIL JUZ
+        Rating::create([
+            'set_id' => $set->id,
+            'user_id' => Auth::id(),
+            'rate' => $request->rate
+        ]);
+        return redirect()->back();
+    }
+
 }
