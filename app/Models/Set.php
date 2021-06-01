@@ -12,6 +12,7 @@ class Set extends Model
     protected $fillable = [
         'name',
         'user_id',
+        'is_public'
     ];
 
     public function components() {

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         @forelse ($chosen_components as $component)
-            <div class="card mb-3" >
+            <div class="card mb-3">
                 <a href="{{ route('components.show', $component->id) }}">
                     <div class="row">
                         <div class="col-md-4">
@@ -25,21 +25,31 @@
                     </div>
                 </a>
             </div>
-        @empty         
+        @empty
         @endforelse
-        <div class="col mb-3">
-            <h4 class="">Nazwa zestawu:</h4>
-            <input class="form-control" name="name" type="text" placeholder="Podaj nazwę" required />
-        </div>
-        <div class="col">
-            <h4 class="">Udostępnić zestaw?</h4>
-            <select class="form-control" name="param_required[]">
-                <option value="y">Tak</option>
-                <option value="n">Nie</option>
-            </select>
-        </div>
-        <div class="row d-flex justify-content-center mt-5">
-            <button type="submit" class="btn btn-primary w-25 center">Zapisz</button>
-        </div>
+
+        @guest
+        @else
+            <form action="{{ route('sets.store') }}" method="post">
+                @csrf
+                <div class="col mb-3">
+                    <h4 class="">Nazwa zestawu:</h4>
+                    <input class="form-control" name="name" type="text" placeholder="Podaj nazwę" required />
+                </div>
+                <div class="col">
+                    <h4 class="">Udostępnić zestaw?</h4>
+                    <select class="form-control" name="is_public">
+                        <option value="1">Tak</option>
+                        <option value="0">Nie</option>
+                    </select>
+                </div>
+                <div class="row d-flex justify-content-center mt-5">
+                    <button type="submit" class="btn btn-primary w-25 center">Zapisz</button>
+                </div>
+                @foreach ($chosen_components as $item)
+                    <input name="chosen_components[]" value="{{ $item->id }}" style="display:none" />
+                @endforeach
+            </form>
+        @endguest
     </div>
 @endsection

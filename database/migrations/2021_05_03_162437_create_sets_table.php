@@ -13,9 +13,11 @@ class CreateSetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sets', function (Blueprint $table) {
+        Schema::create('sets', function (Blueprint $table) 
+        {
             $table->id();
             $table->string('name');
+            $table->boolean('is_public');
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

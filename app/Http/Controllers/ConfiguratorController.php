@@ -15,7 +15,7 @@ class ConfiguratorController extends Controller
      */
     public function index()
     {
-        //
+        return view('sets.index', ['sets' => Set::where('is_public', 1)->get() ]);
     }
 
     /**
@@ -36,7 +36,8 @@ class ConfiguratorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // {name: component name, set_public-> tablica, chosen_components -> tablica z id itemkow}
+        dd($request->chosen_components);
     }
 
     /**
@@ -106,18 +107,10 @@ class ConfiguratorController extends Controller
 
         if($type->id >= 9) 
         {
-            //return $request->session()->get('chosen_components');
-            return view('component_set.show', ['chosen_components' => [
-                Component::findOrFail(5),
-                Component::findOrFail(7),
-                Component::findOrFail(8),
-                Component::findOrFail(9),
-                Component::findOrFail(10),
-                Component::findOrFail(11),
-                Component::findOrFail(6),
-                Component::findOrFail(12),
-                Component::findOrFail(14),
-            ]]);
+            $chosen_components = collect($request->session()->get('chosen_components'))->map(function ($item) {
+                return Component::findOrFail($item['component']);
+            });
+            return view('component_set.show', compact('chosen_components'));
         }
 
         $type = \App\Models\Type::where('id', $type->id + 1)->with('components')->first();
@@ -176,5 +169,10 @@ class ConfiguratorController extends Controller
         // Logic that adds requirements to the components and then passes type, component and requirements to show inside 
         // configurator view
         return view('component_set.configurator', compact(''));
+    }
+
+    public function myLists()
+    {
+        return view('sets.myLists', Set::where('user_id', Auth::id())->get());
     }
 }
