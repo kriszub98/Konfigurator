@@ -33,4 +33,5 @@ Route::view('/products/adminPanel', 'user.adminPanel')->name('products.adminPane
 
 Route::get('/sets/addComponent/{type}/{component}', [App\Http\Controllers\ConfiguratorController::class, 'addComponent'])->name('sets.addComponent');
 Route::get('/configurator', [App\Http\Controllers\ConfiguratorController::class, 'configurator'])->name('sets.configurator');
+
 Route::resource('sets', App\Http\Controllers\ConfiguratorController::class);
