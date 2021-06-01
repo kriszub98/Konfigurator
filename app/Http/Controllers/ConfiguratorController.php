@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Component;
+use App\Models\Set;
+use App\Models\Comment;
+use App\Models\Rating;
 use Illuminate\Support\Facades\Auth;
 
 class ConfiguratorController extends Controller
@@ -43,6 +46,7 @@ class ConfiguratorController extends Controller
             'user_id' => Auth::id()
         ]);
         $set->components()->attach($request->chosen_components);
+        return redirect()->route('sets.show', $set->id);
     }
 
     /**
@@ -193,7 +197,8 @@ class ConfiguratorController extends Controller
 
     public function rate(Request $request, Set $set)
     {
-        // TUTAJ SPRAWDZ CZY NIE OCENIL JUZ
+        if($set->ratings->contains(['user_id', Auth::id()]))
+            return "Test contains działa, zmień na ! przed i all good";
         Rating::create([
             'set_id' => $set->id,
             'user_id' => Auth::id(),
