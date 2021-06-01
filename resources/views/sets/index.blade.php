@@ -9,7 +9,7 @@
 				<div class="col-12">
 				<div class="row">
 					<div class="col">
-                        h4 class="card-title text-black">Nazwa zestawu</h4>
+                        <h4 class="card-title text-black">Nazwa zestawu</h4>
                     </div>
 					<div class="col d-flex justify-content-end">
                         <p class="card-text">

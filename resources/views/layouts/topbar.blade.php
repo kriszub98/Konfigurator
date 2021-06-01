@@ -56,7 +56,7 @@
                 <a class="nav-link navka" href="#"><i class="fa fa-group pr-2"></i>Udostępnione</a>
             </li>
             <li>
-                <a class="nav-link navka" href="#"><i class="fa fa-desktop pr-2"></i>Konfigurator</a>
+                <a class="nav-link navka" href="{{ route('sets.configurator') }}"><i class="fa fa-desktop pr-2"></i>Konfigurator</a>
             </li>
         </ul>
     </nav>
