@@ -56,7 +56,7 @@
                 <a class="nav-link navka" href="#"><i class="fa fa-group pr-2"></i>Udostępnione</a>
             </li>
             <li>
-                <a class="nav-link navka" href="#"><i class="fa fa-desktop pr-2"></i>Konfigurator</a>
+                <a class="nav-link navka" href="{{ route('sets.configurator') }}"><i class="fa fa-desktop pr-2"></i>Konfigurator</a>
             </li>
         </ul>
     </nav>
@@ -65,7 +65,7 @@
         <nav class="nav navbar-expand-sm d-flex justify-content-center">
             <ul class="nav d-flex justify-content-around w-50 bg-white nav-border-bottom">
                 <li>
-                    <a class="nav-link navka" href="#"><i class="fa fa-heart-o pr-2"></i>Moje listy</a>
+                    <a class="nav-link navka" href="{{ route('sets.myLists') }}"><i class="fa fa-heart-o pr-2"></i>Moje listy</a>
                 </li>
                 <li>
                     <a class="nav-link navka" href="#"><i class="fa fa-group pr-2"></i>Udostępnione</a>

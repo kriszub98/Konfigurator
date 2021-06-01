@@ -57,7 +57,7 @@ class ConfiguratorController extends Controller
      */
     public function show(\App\Models\Set $set)
     {
-        return dd($set->components);
+        return view('sets.show', compact('set'));
     }
 
     /**
