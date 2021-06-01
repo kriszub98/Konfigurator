@@ -34,12 +34,13 @@
         @guest
 
         @else
-            @if (!$set->ratings->contains('user_id', Auth::id())))
-                <div class="col-12 row">
+            @if (!$set->ratings->contains('user_id', Auth::id()))
+                <div class="col">
                     <form method="POST" action="{{ route('sets.rate', ['set' => $set]) }}">
                         @csrf
-                        <div class="col">
+                        <div class="col d-flex justify-content-left">
                             <div class="starrating risingstar d-flex flex-row-reverse">
+                                <button class="btn btn-primary h-50 mt-3 ms-4">Oceń</button>
                                 <input type="radio" id="star5" name="rate" value="5" /><label for="star5"
                                     title="5 star"></label>
                                 <input type="radio" id="star4" name="rate" value="4" /><label for="star4"
@@ -50,14 +51,14 @@
                                     title="2 star"></label>
                                 <input type="radio" id="star1" name="rate" value="1" /><label for="star1"
                                     title="1 star"></label>
-                                <button class="btn btn-warning">Oceń</button>
+                                
                             </div>
                         </div>
                     </form>
                 </div>
             @endif
 
-            <div class="col-12">
+            <div class="col mt-3">
                 <div class="row">
                     <form action="{{ route('sets.comment', ['set' => $set]) }}" method="POST">
                         @csrf
@@ -66,29 +67,39 @@
                                 <h4>Skomentuj</h4>
                             </label>
                             <textarea name="content" class="form-control" id="Textarea1" rows="3"></textarea>
-                            <button class="btn btn-primary w-25 mt-2">Dodaj</button>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-primary w-25 mt-2">Dodaj</button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 col-md-12 mt-5">
                 <div class="row">
                     <div class="form-group">
                         <h4>Komentarze</h4>
                         @forelse($set->comments as $comment)
-                            <div class="row comment">
-                                <div class="head">
-                                    <small><strong class="">{{ $comment->user->name }}</strong>
-                                        {{ $comment->updated_at }}</small>
+                            <div class="col-12 col-md-12 border mt-3 bg-white">
+                                <div class="row" style="background-color: #F5F5F5;">
+                                    <div class="col">
+                                        <p class="text-left">{{ $comment->user->name }}</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-end">{{ $comment->updated_at }}</p>
+                                    </div>
                                 </div>
-                                <p>{{ $comment->content }}</p>
-
-                                @if (Auth::user()->role->name == 'Administrator')
+                                <div class="col-md-12">
+                                    <p class="text-break">{{ $comment->content }}</p>
+                                </div>
+                                
+                            </div>
+                            @if (Auth::user()->role->name == 'Administrator')
+                                <div class="d-flex justify-content-end">
                                     <a class="btn btn-danger" href="{{ route('comments.delete', $comment) }}">Usuń
                                         komentarz</a>
-                                @endif
-                            </div>
+                                </div>
+                            @endif
                         @empty
                         @endforelse
                     </div>
