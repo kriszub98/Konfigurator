@@ -22,4 +22,9 @@ class Set extends Model
     public function user() {
         return $this->belongsTo(\App\Models\User::class);
     }
+
+    public function ratings()
+    {
+        return $this->hasMany(\App\Models\Rating::class);
+    }
 }
