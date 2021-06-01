@@ -89,9 +89,10 @@ class ConfiguratorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(\App\Models\Set $set)
     {
-        //
+        $set->delete();
+        return redirect()->back();
     }
 
     public function configurator()
@@ -182,7 +183,7 @@ class ConfiguratorController extends Controller
 
     public function myLists()
     {
-        return view('sets.myLists', Set::where('user_id', Auth::id())->get());
+        return view('sets.myLists', ['sets' => Set::where('user_id', Auth::id())->get()]);
     }
 
     public function comment(Request $request, Set $set)

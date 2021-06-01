@@ -34,7 +34,7 @@
         @guest
 
         @else
-            @if (!$set->ratings->contains('user_id', Auth::id())))
+            @if (!$set->ratings->contains('user_id', Auth::id()))
                 <div class="col-12 row">
                     <form method="POST" action="{{ route('sets.rate', ['set' => $set]) }}">
                         @csrf

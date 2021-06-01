@@ -10,15 +10,25 @@
                             <img src="{{ $component->photo_path }}" style="width:200px; height:200px; object-fit:contain">
                         </div>
                         <div class="col-md-8">
-                            <div class="card-body">
+                            <div class="col-12">
                                 <h4 class="card-title text-dark">{{ $component->name }}</h4>
-                                <p class="card-text text-dark">
+                                <p class="card-text text-dark col-12">
                                     @if ($component->is_produced == 1)
                                         <p class="text-dark">Produkowany: Tak</p>
                                     @else
                                         <p class="text-dark">Produkowany: Nie</p>
                                     @endif
                                 </p>
+
+                                {{-- Component params --}}
+                                <div class="row">
+                                    @forelse ($component->properties->splice(0, 6) as $property)
+                                        <div class="col-2">{{ $property->name }}:</div>
+                                        <div class="col-2">{{ $property->value }}</div>
+                                    @empty
+                                        <div>DUDEK</div>
+                                    @endforelse
+                                </div>
                                 <h5 class="card-text text-danger">{{ $component->price }} zł</h5>
                             </div>
                         </div>
@@ -30,6 +40,7 @@
 
         @guest
         @else
+            <h1 class="text-danger">CENA ZESTAWU: {{ $chosen_components->sum('price') }} zł</h1>
             <form action="{{ route('sets.store') }}" method="post">
                 @csrf
                 <div class="col mb-3">
