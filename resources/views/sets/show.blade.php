@@ -34,51 +34,68 @@
         @guest
 
         @else
-        <div class="col-12 row">
-            <form action="">
-                <div class="col">
-                    <div class="starrating risingstar d-flex flex-row-reverse">
-                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
-                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
-                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>
-                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>
-                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
-                        <button class="btn btn-warning">Oceń</button>
-                    </div>                
+            @if (!$set->ratings->contains('user_id', Auth::id())))
+                <div class="col-12 row">
+                    <form method="POST" action="{{ route('sets.rate', ['set' => $set]) }}">
+                        @csrf
+                        <div class="col">
+                            <div class="starrating risingstar d-flex flex-row-reverse">
+                                <input type="radio" id="star5" name="rate" value="5" /><label for="star5"
+                                    title="5 star"></label>
+                                <input type="radio" id="star4" name="rate" value="4" /><label for="star4"
+                                    title="4 star"></label>
+                                <input type="radio" id="star3" name="rate" value="3" /><label for="star3"
+                                    title="3 star"></label>
+                                <input type="radio" id="star2" name="rate" value="2" /><label for="star2"
+                                    title="2 star"></label>
+                                <input type="radio" id="star1" name="rate" value="1" /><label for="star1"
+                                    title="1 star"></label>
+                                <button class="btn btn-warning">Oceń</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
+            @endif
 
-        <div class="col-12">
-            <div class="row">
-                <div class="form-group">
-                    <label for="Textarea1">
-                        <h4>Skomentuj</h4>
-                    </label>
-                    <textarea name="description" class="form-control" id="Textarea1" rows="3"></textarea>
-                    <button class="btn btn-primary w-25 mt-2">Dodaj</button>
+            <div class="col-12">
+                <div class="row">
+                    <form action="{{ route('sets.comment', ['set' => $set]) }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="Textarea1">
+                                <h4>Skomentuj</h4>
+                            </label>
+                            <textarea name="content" class="form-control" id="Textarea1" rows="3"></textarea>
+                            <button class="btn btn-primary w-25 mt-2">Dodaj</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
 
-        <div class="col-12">
-            <div class="row">
-                <div class="form-group">
-                    <h4>Komentarze</h4>
-                    <div class="row comment">
-                        <div class="head">
-                            <small><strong class="">Nick</strong> 30.10.2017 12:13</small>
-                        </div>    
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non lorem elementum, accumsan magna sed, faucibus mauris. Nulla pellentesque ante nibh, ac hendrerit ante fermentum sed. Nunc in libero dictum, porta nibh pellentesque, ultrices dolor. Curabitur nunc ipsum, blandit vel aliquam id, aliquam vel velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sit amet mi dignissim, pretium justo non, lacinia libero. Nulla facilisi. Donec id sem velit. </p>
+            <div class="col-12">
+                <div class="row">
+                    <div class="form-group">
+                        <h4>Komentarze</h4>
+                        <div class="row comment">
+                            <div class="head">
+                                <small><strong class="">Nick</strong> 30.10.2017 12:13</small>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non lorem elementum, accumsan
+                                magna sed, faucibus mauris. Nulla pellentesque ante nibh, ac hendrerit ante fermentum sed.
+                                Nunc
+                                in libero dictum, porta nibh pellentesque, ultrices dolor. Curabitur nunc ipsum, blandit vel
+                                aliquam id, aliquam vel velit. Vestibulum ante ipsum primis in faucibus orci luctus et
+                                ultrices
+                                posuere cubilia Curae; Sed sit amet mi dignissim, pretium justo non, lacinia libero. Nulla
+                                facilisi. Donec id sem velit. </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
         @endguest
 
     </div>
 
-    
-@endsection
 
+@endsection

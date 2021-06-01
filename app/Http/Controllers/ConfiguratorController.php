@@ -197,13 +197,12 @@ class ConfiguratorController extends Controller
 
     public function rate(Request $request, Set $set)
     {
-        if($set->ratings->contains(['user_id', Auth::id()]))
-            return "Test contains działa, zmień na ! przed i all good";
-        Rating::create([
-            'set_id' => $set->id,
-            'user_id' => Auth::id(),
-            'rate' => $request->rate
-        ]);
+        if(!$set->ratings->contains('user_id', Auth::id()))
+            Rating::create([
+                'set_id' => $set->id,
+                'user_id' => Auth::id(),
+                'rate' => $request->rate
+            ]);
         return redirect()->back();
     }
 
