@@ -206,4 +206,10 @@ class ConfiguratorController extends Controller
         return redirect()->back();
     }
 
+    public function deleteComment(\App\Models\Comment $comment)
+    {
+        $comment->delete();
+        return redirect()->back();
+    }
+
 }

@@ -37,3 +37,4 @@ Route::resource('sets', App\Http\Controllers\ConfiguratorController::class);
 Route::get('/myLists', [App\Http\Controllers\ConfiguratorController::class, 'myLists'])->name('sets.myLists');
 Route::post('/comment/{set}', [App\Http\Controllers\ConfiguratorController::class, 'comment'])->name('sets.comment');
 Route::post('/rate/{set}', [App\Http\Controllers\ConfiguratorController::class, 'rate'])->name('sets.rate');
+Route::get('/comments/{comment}/delete', [App\Http\Controllers\ConfiguratorController::class, 'deleteComment'])->name('comments.delete');

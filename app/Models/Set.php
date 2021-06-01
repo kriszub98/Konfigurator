@@ -27,4 +27,9 @@ class Set extends Model
     {
         return $this->hasMany(\App\Models\Rating::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\Comment::class);
+    }
 }

@@ -76,19 +76,21 @@
                 <div class="row">
                     <div class="form-group">
                         <h4>Komentarze</h4>
-                        <div class="row comment">
-                            <div class="head">
-                                <small><strong class="">Nick</strong> 30.10.2017 12:13</small>
+                        @forelse($set->comments as $comment)
+                            <div class="row comment">
+                                <div class="head">
+                                    <small><strong class="">{{ $comment->user->name }}</strong>
+                                        {{ $comment->updated_at }}</small>
+                                </div>
+                                <p>{{ $comment->content }}</p>
+
+                                @if (Auth::user()->role->name == 'Administrator')
+                                    <a class="btn btn-danger" href="{{ route('comments.delete', $comment) }}">Usuń
+                                        komentarz</a>
+                                @endif
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non lorem elementum, accumsan
-                                magna sed, faucibus mauris. Nulla pellentesque ante nibh, ac hendrerit ante fermentum sed.
-                                Nunc
-                                in libero dictum, porta nibh pellentesque, ultrices dolor. Curabitur nunc ipsum, blandit vel
-                                aliquam id, aliquam vel velit. Vestibulum ante ipsum primis in faucibus orci luctus et
-                                ultrices
-                                posuere cubilia Curae; Sed sit amet mi dignissim, pretium justo non, lacinia libero. Nulla
-                                facilisi. Donec id sem velit. </p>
-                        </div>
+                        @empty
+                        @endforelse
                     </div>
                 </div>
             </div>
