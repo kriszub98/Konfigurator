@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Component;
+use App\Models\Set;
+use Auth;
 
 class ConfiguratorController extends Controller
 {

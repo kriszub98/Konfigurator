@@ -3,20 +3,15 @@
 @section('content')
 
 <div class="container">
-<div class="row">
-
-	<div class="col col-md-8">
-		<div class="card-body">
+	<div class="col col-md-12">
+		<div class="card-body border">
 			<div class="row">
 				<div class="col-12">
-				<div class="row">
-					<div class="col"><h1 style="color: black;" class="card-title">Nazwa zestawu</h1></div>
-					<div class="col" style="display: flex; justify-content: flex-end;">
-						<p class="card-text" style="background-color: transparent; border: none; outline: none;">
-						<i class="fa fa-user"></i> 
-						User</p>
-					</div>
-				</div>    
+					<div class="row">
+						<div class="col">
+							<h4 class="card-title text-black">Nazwa zestawu</h4>
+						</div>
+					</div>    
 				</div>
 				<div class="col-12">
 					<div class="row">
@@ -27,20 +22,20 @@
 							<p class="card-text">Prywatny lub ocena(public)</p>
 						</div>
 						<div class="col md-3 col-12">
-							<p  class="card-text">Liczba ocen (public)</p>
+							<p  class="card-text">Liczba ocen(public)</p>
 						</div>
 					</div>
 				</div>  
-				<div class="col-12 mt-1">
-					<h4 class="card-title">Cena?</h4>
-				</div>
-				<div class="col-12 mt-1">
-					<button class="card-title">usun</button>
+				<div class="row">
+					<div class="col mt-1">
+						<h5 class="card-title text-danger">Cena?</h5>
+					</div>
+					<div class="col d-flex justify-content-end">
+						<button class="btn-danger">Usuñ</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-</div>
 </div>
 @endsection

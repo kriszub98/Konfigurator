@@ -35,3 +35,4 @@ Route::get('/sets/addComponent/{type}/{component}', [App\Http\Controllers\Config
 Route::get('/configurator', [App\Http\Controllers\ConfiguratorController::class, 'configurator'])->name('sets.configurator');
 Route::resource('sets', App\Http\Controllers\ConfiguratorController::class);
 Route::get('/myLists', [App\Http\Controllers\ConfiguratorController::class, 'myLists'])->name('sets.myLists');
+
