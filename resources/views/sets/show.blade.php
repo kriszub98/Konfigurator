@@ -93,6 +93,8 @@
                 </div>
             </div>
 
+            
+            @endguest
             <div class="col-12 col-md-12 mt-5">
                 <div class="row">
                     <div class="form-group">
@@ -123,8 +125,6 @@
                     </div>
                 </div>
             </div>
-
-        @endguest
 
     </div>
 
